@@ -1,0 +1,216 @@
+<!-- Page Main -->
+<div role="main" class="main">
+    <div class="page-default bg-grey typo-dark">
+        <!-- Container -->
+        <div class="container">
+            <div class="row">
+                <div class="text-center margin-top-60" ng-show="loading">
+                    <i class="fa fa-spin fa-5x fa-spinner"></i>
+                </div>
+                <div class="row" ng-show="!loading">
+                    <!-- Course Banner Image -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+                        <h4><a ui-sref="course({ id: courseCtrl.course.id, name: courseCtrl.course.name })">{{courseCtrl.course.name}}</a></h4>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <br>
+                                    <i class="fa fa-university"></i><span> Etablissement </span><br><br>
+                                    <img ng-if="courseCtrl.course.providerLogo" class="img-responsive" alt="{{courseCtrl.course.institute}}" class="img-responsive course-logo" ng-src={{courseCtrl.course.providerLogo}} width="250" height="200">
+                                    <br><br>
+                                    <span ng-if="courseCtrl.course.outputTags.length">
+                                        <i class="fa fa-code"></i> Langages utilisés <br>
+                                        <span ng-repeat="tag in courseCtrl.course.outputTags" class="cat bg-yellow">{{tag}}</span>
+                                        <br>
+                                    </span><br>
+                                    <i class="fa fa-info"></i><span> Informations pratiques </span><br>
+                                    <span>
+                                        <span class="label label-default">{{courseCtrl.course.trainingType}}</span>
+                                        <span class="label label-default">{{courseCtrl.course.dedication}}</span>
+                                        <span class="label label-default">{{courseCtrl.course.complexity}}</span>
+                                        <span class="label label-default">{{courseCtrl.course.mode}} <span ng-if="course.location"> ({{courseCtrl.course.location}})</span></span>
+
+                                    </span>
+                                    <br>
+                                </div><!-- Column -->
+                                <div class="col-sm-8">
+                                    <div class="course-detail">
+                                        <!-- Course Content -->
+                                            <ul class="course-meta-icons">
+                                                <li class="list-group-item col-md-6"><i class="fa fa-folder-open"></i>
+                                                    <span> Catégorie </span><br>
+                                                    <span class="label label-default" ng-if=courseCtrl.course.category>{{courseCtrl.course.category}}</span>
+                                                    <span ng-if=!courseCtrl.course.category class="infos">N/A</span>
+                                                </li>
+                                                <li class="list-group-item col-md-6" ><i class="fa fa-tags"></i><span> Prix estimé </span>
+                                                    <span class="infos">
+                                                        <span ng-if="courseCtrl.course.estimatedTotalCost>0">
+                                                            <i ng-if="coursecourseCtrl.course.currency=='GBP'" class="fa fa-gbp"></i><i ng-if="courseCtrl.course.currency=='USD'" class="fa fa-usd"></i><span ng-if="courseCtrl.course.estimatedTotalCost>0"> {{courseCtrl.course.estimatedTotalCost | number:0}} </span><i ng-if="courseCtrl.course.currency=='EUR'" class="fa fa-eur"></i>
+                                                        </span>
+                                                        <span ng-if="courseCtrl.course.estimatedTotalCost==0&&courseCtrl.course.additionalCostInformation!='Gratuit'"> N/A </span>
+                                                        <span ng-if="courseCtrl.course.estimatedTotalCost==0&&courseCtrl.course.additionalCostInformation=='Gratuit'"> Gratuit </span>
+                                                    </span>
+                                                </li>
+                                                <li class="list-group-item col-md-6"><i class="fa fa-money"></i><span> Salaire moyen </span>
+                                                    <span class="infos">
+                                                        <span ng-if="courseCtrl.course.postGraduationIncomeExpectations&&courseCtrl.course.postGraduationIncomeExpectations!='N/A'">
+                                                            <i ng-if="courseCtrl.course.incomeExpectationCurrency=='GBP'" class="fa fa-gbp"></i><i ng-if="courseCtrl.course.incomeExpectationCurrency=='USD'" class="fa fa-dollar"></i>{{courseCtrl.course.postGraduationIncomeExpectations}}k<i ng-if="courseCtrl.course.incomeExpectationCurrency=='EUR'" class="fa fa-euro"></i>
+                                                        </span>
+                                                        <span ng-if="courseCtrl.course.postGraduationIncomeExpectations=='N/A'||!courseCtrl.course.postGraduationIncomeExpectations"> N/A
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                                <info-list element=courseCtrl.course.graduationRate text="Taux de réussite" faicon="fa-graduation-cap"></info-list>
+                                                <info-list element=courseCtrl.course.inJobRate6Months text="Emploi trouvé dans les 6 mois" faicon="fa-briefcase"></info-list>
+                                                <!-- <info-list element=courseCtrl.course.startDate text="Prochaine session" faicon="fa-calendar"></info-list> -->
+                                                <info-list element=courseCtrl.course.duration text="Durée" type="duration" faicon="fa-calendar"></info-list>
+                                                <div class="col-sm-6">
+                                                    <li class="list-group-item"><i class="checkbox-infos fa " ng-class="courseCtrl.course.careerSupport?'fa-check-square-o text-success':'fa-square-o'"></i><i class="fa fa-industry"></i><span> Service Carrières </span></li>
+                                                    <li class="list-group-item"><i class="checkbox-infos fa" ng-class="courseCtrl.course.jobGuarantee?'fa-check-square-o text-success':'fa-square-o'"></i><i class="fa fa-sign-out"></i><span> Emploi garanti </span></li>
+                                                    <li class="list-group-item"><i class="fa checkbox-infos" ng-class="courseCtrl.course.mentor?'fa-check-square-o text-success':'fa-square-o'"></i><i class="fa fa-users"></i><span> Mentorat </span></li>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <li class="list-group-item">
+                                                        <a href="/#/course/{{courseCtrl.course.id}}/{{courseCtrl.course.name}}#ratings" target="_self">
+                                                            <static-star rating=courseCtrl.course.ratingUsers nb=courseCtrl.course.ratingUsersNb></static-star>
+                                                        </a>
+                                                    </li>
+                                                </div>
+                                                <li class="list-group-item col-md-6" ng-if="courseCtrl.course.recognized"><i class="fa fa-institution"></i><span> Reconnu par </span>
+                                                    <span class="infos">
+                                                    <img class="img-responsive recognizersLogo" width="100" height="50" ng-repeat="recognizersLogo in courseCtrl.course.recognizersLogos" ng-src="{{recognizersLogo}}"></span>
+                                                </li>
+                                            </ul>
+                                            <br>
+                                    </div><!-- Course Detail -->
+                                </div><!-- Column -->
+                            </div>
+                        </div><!-- Column -->
+                        <div class="col-sm-3">
+                            <img alt="{{courseCtrl.course.name}}" width="500" height="350" class="img-responsive" ng-src="assets/images/{{courseCtrl.courseCategory}}">
+                            <br><br>
+                            <span> Partage ce lien <br>
+                                <div>
+                                    <ul class="social-icons">
+                                        <li class="facebook"><a href=""
+                                            socialshare
+                                            socialshare-provider="facebook"
+                                            socialshare-text="{{courseCtrl.course.name}}"
+                                            socialshare-hashtags="sagarank, {{course.outputTags.join(',')}}"
+                                            socialshare-via="saga_rank"
+                                            socialshare-url="{{courseCtrl.course.link}}" title="Share on Facebook">Facebook</a></li>
+                                        <li class="twitter">
+                                            <a href=""
+                                            socialshare
+                                            socialshare-provider="twitter"
+                                            socialshare-text="{{courseCtrl.course.name}}"
+                                            socialshare-hashtags="sagarank, {{courseCtrl.course.outputTags.join(',')}}"
+                                            socialshare-via="saga_rank"
+                                            socialshare-url="{{courseCtrl.course.link}}" title="Share on Twitter">Twitter</a>
+                                        </li>
+                                        <li class="linkedin"><a href=""
+                                            socialshare
+                                            socialshare-provider="linkedin"
+                                            socialshare-text="{{courseCtrl.course.name}}"
+                                            socialshare-hashtags="sagarank, {{courseCtrl.course.outputTags.join(',')}}"
+                                            socialshare-url="{{courseCtrl.course.link}}" title="Share on LinkedIn">Linkedin</a></li>
+                                        <li class="mail"><a href=""
+                                            socialshare
+                                            socialshare-provider="email"
+                                            socialshare-subject="{{courseCtrl.course.name}}"
+                                            socialshare-body="{{courseCtrl.course.name}} - {{courseCtrl.course.link}} via SagaRank"
+                                            title="Share through Email">Email</a></li>
+                                    </ul>
+                                </div><!-- Member Detail Wrapper -->
+                            </span>
+                        </div><!-- Column -->
+                    </div><!-- Row -->
+                </div><!-- Row -->
+                <br>
+                <div class="row" ng-show="!loading">
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+                            <h5 ng-if="courseCtrl.course.description!=''">Description</h5>
+                            <p>{{courseCtrl.course.Description}}</p>
+                            <!-- Blog Blockquote -->
+                            <blockquote ng-if="courseCtrl.course.requirements">
+                              <p>Pré-requis : {{courseCtrl.course.requirements}}</p>
+                            </blockquote>
+                            <span ng-if="courseCtrl.course.jobPositionsPostTraining.length">
+                                <i class="fa"></i><h5>Quels jobs après cette formation ?</h5>
+                                <span ng-repeat="tag in courseCtrl.course.jobPositionsPostTraining" class="cat bg-yellow">{{tag}}</span>
+                                <br><br>
+                            </span>
+                            <span ng-if="courseCtrl.course.specials!=''">
+                                <br>
+                                <h5>Notes</h5>
+                                <p>{{courseCtrl.course.specials}}</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row" ng-show="!loading" id="ratings">
+                    <div class="col-sm-12">
+                        <div class="col-sm-3" ng-if="courseCtrl.course.ratingUsers">
+                            <h5>Evaluations</h5>
+                        </div>
+                        <div class="col-sm-9">
+                            <i> Tu as déjà suivi cette formation ? Contribue à la communauté :</i>
+                            <a ng-if="courseCtrl.isLoggedIn()" ui-sref="review({ id: courseCtrl.course.id, name: courseCtrl.course.name })" class="btn btn-lg">Evalue cette formation</a>
+                            <h6 ng-if="!courseCtrl.isLoggedIn()">Connecte-toi pour pouvoir évaluer ce cours</h6>
+                        </div>
+                        <br><br><br>
+                            <!-- Widget -->
+                        <div class="widget" ng-repeat="review in courseCtrl.reviews" ng-show=review.overallReview||review.overallStarRating>
+                            <uib-accordion close-others="oneAtATime">
+                                <h5 class="widget-title"> Evaluation de {{review.userFirstName}}</h5>
+                                <b> Note globale :</b> <static-star rating=review.overallStarRating nb=-1></static-star>
+                                <div ng-if=review.overallReview>{{review.overallReview}}</div><br>
+                                   <div uib-accordion-group class="panel-default" is-open="status.open">
+                                      <uib-accordion-heading>
+                                            Détails de l'évaluation <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                      </uib-accordion-heading>
+                                        <review-display text="Matériaux" stars="{{review.materialStarRating}}" review="{{review.materialReview}}"></review-display>
+                                        <review-display text="Apprentissage" stars="{{review.teachingStarRating}}" review="{{review.teachingReview}}"></review-display>
+                                        <review-display text="Interactions" stars="{{review.interactionStarRating}}" review="{{review.interactionReview}}"></review-display>
+                                        <review-display text="Emploi" stars="{{review.jobStarRating}}" review="{{review.jobReview}}"></review-display>
+                                        <review-display text="Rapport qualité prix" stars="{{review.valueStarRating}}" review="{{review.valueReview}}"></review-display>
+                                        <span ng-if=!(review.materialStarRating||review.materialReview||review.teachingStarRating||review.teachingReview||review.interactionStarRating||review.interactionReview||review.jobStarRating||review.jobReview||review.valueStarRating||review.valueReview)> Aucun détail disponible </span>
+                                    </div>
+                                </uib-accordion>
+                        </div><!-- Widget -->
+                    </div><!-- Column -->
+                </div><!-- Row -->
+            </div><!-- Row -->
+            <br>
+<!--            <div class="row">
+                <div class="container">
+                    <aside class="sidebar">
+                        <div class="widget">
+                            <h5 class="widget-title">Tag Cloud<span></span></h5>
+                            <ul class="tag-widget">
+                                <li ng-repeat="tag in searchTags"><a ui-sref="searchWithTags({ tags: tag })">{{i18n.get(tag)}}</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div> -->
+        </div><!-- Container -->
+    </div><!-- Page Default -->
+</div><!-- Page Main -->
+<section class="pad-tb-30" ng-show="!loading">
+        <div class="container">
+            <div class="row">
+                <!-- Column -->
+                <div class="col-sm-12 animated fadeInUp visible" data-animation="fadeInUp" data-animation-delay="600">
+                    <div class="callto-action text-center">
+                        <h5 class="title"><span class="call-title-text">Cette formation t'intéresse ? </span>
+                        <a href="{{courseCtrl.course.link}}" target="_blank" class="btn">INSCRIS-TOI</a></h5>
+                    </div>
+                </div><!-- Column -->
+            </div><!-- Row -->
+        </div><!-- Container -->
+</section>

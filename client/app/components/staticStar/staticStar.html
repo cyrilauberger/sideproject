@@ -1,0 +1,15 @@
+<h5><div class="rating">
+  <span ng-show="$ctrl.rating<4.5||!$ctrl.rating">☆</span>
+  <span ng-show="$ctrl.rating>=4.5">★</span>
+  <span ng-show="$ctrl.rating<3.5||!$ctrl.rating">☆</span>
+  <span ng-show="$ctrl.rating>=3.5">★</span>
+  <span ng-show="$ctrl.rating<2.5||!$ctrl.rating">☆</span>
+  <span ng-show="$ctrl.rating>=2.5">★</span>
+  <span ng-show="$ctrl.rating<1.5||!$ctrl.rating">☆</span>
+  <span ng-show="$ctrl.rating>=1.5">★</span>
+  <span ng-show="$ctrl.rating<0.5||!$ctrl.rating">☆</span>
+  <span ng-show="$ctrl.rating>=0.5">★</span>
+  <h6 ng-show="$ctrl.nb>1" style="color:#606060"><i>{{$ctrl.nb}} évaluations</i></h6>
+  <h6 ng-show="$ctrl.nb==1" style="color:#606060"><i>{{$ctrl.nb}} évaluation</i></h6>
+  <h6 ng-show="!$ctrl.nb" style="color:#606060"><i>Pas encore d'évaluations</i></h6>
+</div></h5>

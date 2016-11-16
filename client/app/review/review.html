@@ -1,0 +1,49 @@
+<div role="main" class="main">
+    <div class="page-default bg-grey typo-dark">
+        <!-- Container -->
+        <div class="container">
+            <div class="row">
+                <!-- Page Content -->
+                <div class="col-md-12">
+                    <h4>Évaluation du cours<a ui-sref="course({ id: reviewCtrl.course.id, name: reviewCtrl.course.name })"> {{reviewCtrl.course.name}}</a></h4>
+                    <div class="input-group">
+                    <i> L'évaluation est réservée aux personnes ayant déjà suivi cette formation. </i>
+                    <br><br>
+                    <h5> Note globale </h5>
+                    <p>Indiquez votre impression globale du programme</p>
+                    <dynamic-star rating-type="overallStarRating"></dynamic-star>
+                    <input type="text" class="form-control search" placeholder="Expliquez la note donnée..." ng-model="reviewCtrl.review.overallReview"><br>
+                    <br><br><br>
+                    <!-- Checker is partenaire ? -->
+                    <h5> Matériel pédagogique et cursus</h5>
+                    <p>Évaluez la qualité pédagogique des cours et de la structure du programme en vue des objectifs d'apprentissage</p>
+                    <dynamic-star rating-type="materialStarRating"></dynamic-star>
+                    <input type="text" class="form-control search" placeholder="Expliquez la note donnée..." ng-model="reviewCtrl.review.materialReview"><br>
+                    <br><br><br>
+                    <h5> Personnel d'enseignement </h5>
+                    <p>Évaluez la qualité des enseignants et des mentors impliqués dans le programme (précision de la communication, aide à l'apprentissage)</p>
+                    <dynamic-star rating-type="teachingStarRating"></dynamic-star>
+                    <input type="text" class="form-control search" placeholder="Expliquez la note donnée..." ng-model="reviewCtrl.review.teachingReview"><br>
+                    <br><br><br>
+                    <h5> Dynamique de promotion </h5>
+                    <p>Évaluez la qualité des échanges entre les élèves du programme, le cas échéant (facilité à mettre en œuvre, intérêt des élèves, qualité de l’apport en compétences)</p>
+                    <dynamic-star rating-type="interactionStarRating"></dynamic-star>
+                    <input type="text" class="form-control search" placeholder="Expliquez la note donnée..." ng-model="reviewCtrl.review.interactionReview"><br>
+                    <br><br><br>
+                    <h5> Aide à la recherche d'emploi </h5>
+                    <p>Évaluez la qualité des aides mises en place par l'école pour la recherche d'emploi, le cas échéant</p>
+                    <dynamic-star rating-type="jobStarRating"></dynamic-star>
+                    <input type="text" class="form-control search" placeholder="Expliquez la note donnée..." ng-model="reviewCtrl.review.jobReview"><br>
+                    <br><br><br>
+                    <h5> Rapport qualité prix </h5>
+                    <P>Indiquez votre perception subjective de la qualité du programme par rapport à son prix</P>
+                    <dynamic-star rating-type="valueStarRating"></dynamic-star>
+                    <input type="text" class="form-control search" placeholder="Expliquez la note donnée..." ng-model="reviewCtrl.review.valueReview"><br>
+                    </div>
+                    <br><br><br>
+                    <a ui-sref="reviewThanks({ id: reviewCtrl.course.id, name: reviewCtrl.course.name })" ng-click="reviewCtrl.sendReview()" class="btn btn-lg">ENVOYER</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

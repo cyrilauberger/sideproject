@@ -1,0 +1,145 @@
+<!-- Page Header -->
+<div class="page-header sm bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- Page Header Wrapper -->
+                <div class="page-header-wrapper">
+                    <!-- Title & Sub Title -->
+                    <h4 class="title">Formations</h4>
+                    <h5 class="sub-title">
+                        <span class="label label-info" ng-repeat="tag in searchCtrl.svc.filters.tags"><i class="fa fa-tag"></i> {{i18n.get(tag)}}</span>
+                        <span class="label label-info" ng-if="searchCtrl.svc.filters.query"><i class="fa fa-search"></i> {{searchCtrl.svc.filters.query}}</span>
+                    </h5>
+                    <ol class="breadcrumb">
+                        <li><a href="/">Accueil</a></li>
+                        <li class="active">Formations</li>
+                    </ol><!-- Breadcrumb -->
+                </div><!-- Page Header Wrapper -->
+            </div><!-- Coloumn -->
+        </div><!-- Row -->
+    </div><!-- Container -->
+</div><!-- Page Header -->
+
+<!-- Page Main -->
+<div role="main" class="main">
+    <div class="page-default bg-grey typo-dark">
+        <!-- Container -->
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-3">
+                    <!-- aside -->
+                    <aside class="sidebar">
+                        <!-- Widget -->
+                        <div class="widget no-box">
+                            <h5 class="widget-title">Recherche<span></span></h5>
+                            {{searchCtrl.svc}}
+                            <div class="search">
+                                <form ng-submit="searchCtrl.clickSearch()">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control search" ng-model="searchCtrl.svc.filters.query" name="q" id="q" placeholder="Recherche..." autocomplete="off" required>
+                                        <span class="input-group-btn">
+                                            <button class="btn" type="button" ng-click="searchCtrl.clickSearch()"><i class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- Widget -->
+
+                        <div class="widget">
+                            <h5 class="widget-title">Prix<span></span></h5>
+                            <rzslider
+                                rz-slider-model="searchCtrl.svc.filters.min"
+                                rz-slider-high="searchCtrl.svc.filters.max"
+                                rz-slider-options="slider.options">
+                            </rzslider>
+                            <br><br>
+                            <h5 class="widget-title">Type de formation<span></span></h5>
+                            <div class="btn-group btn-block">
+                                <label class="btn btn-primary col-lg-12" ng-model="searchCtrl.svc.filters.skill" ng-change="searchCtrl.doSearch()" uib-btn-checkbox>
+                                    <i class="fa" ng-class="searchCtrl.svc.filters.skill?'fa-check-square':'fa-square'"></i> Formation continue
+                                </label><br><br>
+                                <label class="btn btn-primary col-lg-12" ng-model="searchCtrl.svc.filters.job" ng-change="searchCtrl.doSearch()" uib-btn-checkbox>
+                                    <i class="fa" ng-class="searchCtrl.svc.filters.job?'fa-check-square':'fa-square'"></i> Formation initiale
+                                </label>
+                            </div>
+                        </div><!-- Widget -->
+
+
+                        <!-- Widget -->
+                        <div class="widget">
+                            <h5 class="widget-title">Tag Cloud<span></span></h5>
+                            <ul class="tag-widget">
+                                <li ng-click="toggleTag(tag)" ng-repeat="tag in searchTags">
+                                    <a href=""><i ng-show="searchCtrl.svc.filters.tags.indexOf(tag)!=-1" class="fa fa-check"></i> {{i18n.get(tag)}}</a>
+                                </li>
+                            </ul><!-- Tag Widget -->
+                        </div><!-- Widget -->
+
+                    </aside><!-- aside -->
+                </div><!-- Column -->
+                <!-- Page Content -->
+                <div class="col-md-9">
+                    <div class="text-center margin-top-60" ng-show="searchCtrl.loading">
+                        <i class="fa fa-spin fa-5x fa-spinner"></i>
+                    </div>
+
+                    <div class="text-center" ng-show="!searchCtrl.loading&&searchCtrl.courses.length==0">
+                        <h5>Désolé ! Il n'y a aucune formation correspondant à vos critères de recherche !</h5>
+                    </div>
+
+                    <ul class="row course-container course-list" ng-if="!searchCtrl.loading&&searchCtrl.courses.length>0">
+
+                        <!-- List -->
+                        <li class="col-sm-12" ng-repeat="course in searchCtrl.courses" ng-class="course.featured?'featured':''">
+
+                            <!-- Course Wrapper -->
+                            <div class="row course-wrapper">
+                                <!-- Course Banner Image -->
+                                <div class="col-sm-5">
+                                    <div class="course-banner-wrap">
+                                        <span class="cat below pull-left bg-yellow" ng-if="course.featured">Sponsorisé</span><span class="cat bg-green">{{course.category}}</span><br><br><br>
+                                        <a ui-sref="course({ id: course.id, name: course.name })">
+                                            <img ng-if="course.providerLogo" width="125" height="90" alt="course" class="img-responsive course-logo" ng-src="{{course.providerLogo}}">
+                                            <img ng-if="!course.providerLogo" width="125" height="90" alt="course" class="img-responsive course-logo" src="images/logo.png">
+                                        </a>
+                                        <!-- <h5><small>par</small> <span>{{course.provider}}</span></h5> -->
+                                        <br>
+                                        <static-star align="center" rating=course.ratingUsers nb=course.ratingUsersNb+0></static-star>
+                                    </div><!-- Course Banner Image -->
+                                </div><!-- Column -->
+                                <!-- Course Detail -->
+                                <div class="col-sm-7">
+                                    <div class="course-detail-wrap">
+                                        <!-- Course Content -->
+                                        <div class="course-content">
+                                            <h5><a ui-sref="course({ id: course.id, name: course.name })">{{course.name}}</a></h5>
+                                            <!-- <div ng-if="!course.featured" class="rating"> --><!-- </div> -->
+                                            <div ng-init="limit = 200; moreShown = false">
+                                                {{course.description | limitTo: limit}}{{text.length > limit ? '...' : ''}}
+                                                <a ng-show="course.description.length > limit"
+                                                  href ng-click="limit=course.description.length; moreShown = true">... Plus
+                                                </a>
+                                                <a ng-show="moreShown" href ng-click="limit=150; moreShown = false"> Moins </a>
+                                            </div>
+                                            <p ng-text-truncate="course.description" ng-tt-words-threshold="40" ng-tt-no-toggling></p>
+                                            <a ui-sref="course({ id: course.id, name: course.name})" class="btn">En savoir plus...</a>
+                                        </div><!-- Course Content -->
+                                    </div><!-- Course Detail -->
+                                </div><!-- Column -->
+                            </div><!-- Course Wrapper -->
+                            <!-- Divider -->
+                            <hr class="md">
+                        </li><!-- List -->
+
+                        <!-- Pagination -->
+                        <nav class="text-center">
+                            <ul uib-pagination total-items="searchCtrl.svc.pagination.total" ng-change="searchCtrl.constructor()" ng-model="searchCtrl.svc.pagination.currentPage" items-per-page="searchCtrl.svc.pagination.size" force-ellipses="true" max-size="6" class="pagination"></ul>
+                        </nav><!-- Pagination -->
+                    </ul><!-- Row -->
+                </div><!-- Column -->
+            </div><!-- Row -->
+        </div><!-- Container -->
+    </div><!-- Page Default -->
+</div><!-- Page Main -->

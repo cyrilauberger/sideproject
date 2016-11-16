@@ -1,0 +1,112 @@
+<section class="lp-carousel" ng-style="{'background-image': 'url(' + $ctrl.slide + ')'}">
+  <div class="container position-none-1024">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hero hero-scene-event typo-light">
+          <h2 class="title">Bienvenue sur Sagarank</h2>
+          <h5 class="sub-title">Trouve la formation la plus adaptée à ton profil et prépare-toi à décrocher ton prochain emploi !</h5>
+          <div class="btn-wrap text-center margin-top-50">
+            <a ui-sref="search" class="btn">Voir toutes les formations</a>
+          </div>
+        </div>
+      </div><!-- Column -->
+    </div><!-- Row -->
+  </div>
+</section>
+
+<!-- Section -->
+<section class="pad-bottom-none search-box ng-scope">
+  <div class="container">
+    <div class="slider-below-wrap shadow bg-color typo-light">
+      <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+          <!-- Search -->
+          <div class="search">
+            <form id="searchForm" class="dark ng-pristine ng-invalid ng-invalid-required">
+              <div class="input-group">
+                <input type="text" class="form-control search ng-pristine ng-untouched ng-invalid ng-invalid-required" name="q" id="q" placeholder="Recherche une formation ici..." autocomplete="off" enter="search()" ng-model="query" required="">
+                <span class="input-group-btn">
+                  <button class="btn" type="button" ng-click="search()"><i class="fa fa-search"></i></button>
+                </span>
+              </div>
+            </form>
+          </div><!-- Search -->
+        </div><!-- Column -->
+      </div><!-- Slider Below Wrapper -->
+    </div><!-- Row -->
+  </div><!-- Container -->
+</section>
+<!-- Section -->
+<section class="pad-top-none">
+  <div class="container">
+    <!-- Row -->
+    <div class="row margin-top-30">
+      <!-- Column -->
+      <div class="col-sm-4" ng-repeat="course in $ctrl.courses" class="bg-grey">
+        <!-- Related Wrapper -->
+        <div class="related-wrap">
+          <!-- Related Image Wrapper -->
+          <div class="img-wrap bg-grey">
+            <img ng-if="course.providerLogo" width="160" alt="course" class="img-responsive course-logo course-logo-home" ng-src="{{course.providerLogo}}">
+            <img ng-if="!course.providerLogo" width="160" alt="course" class="img-responsive course-logo course-logo-home" src="assets/images/logo.png">
+          </div>
+          <!-- Related Content Wrapper -->
+          <div class="related-content bg-grey">
+            <h6 class="title"><a ui-sref="course({ id: course.id, name: course.name })" title="Read More">+</a> {{course.name}}</h6>
+          </div><!-- Related Content Wrapper -->
+        </div><!-- Related Wrapper -->
+      </div><!-- Column -->
+
+      <!-- Title -->
+      <div class="col-sm-12">
+        <div class="btn-wrap text-center margin-top-50">
+          <a ui-sref="search" class="btn">Voir toutes les formations</a>
+        </div>
+      </div>
+      <!-- Title -->
+    </div><!-- Row -->
+  </div><!-- Container -->
+</section><!-- Section -->
+<!-- Section -->
+<section id="about" class="bg-grey typo-dark">
+  <div class="container">
+    <div class="row counter-sm">
+      <!-- Title -->
+      <div class="col-sm-12">
+        <div class="title-container">
+          <div class="title-wrap">
+            <h4 class="title">Qui sommes-nous ?</h4>
+            <span class="separator line-separator"></span>
+          </div>
+          <p class="description">Sagarank est la première plateforme Européenne d'évaluation des formations de l'économie numérique. Notre objectif : t'aider à trouver le Bootcamp qui te correspond pour apprendre à coder.
+        </p>
+        </div>
+        <div class="title-container">
+          <div class="title-wrap">
+            <h4 class="title">Notre vision</h4>
+            <span class="separator line-separator"></span>
+          </div>
+          <p class="description">L’Europe fait actuellement face à un double problème : le chômage des jeunes très élevé d’une part, et la pénurie de compétences dans le numérique d’autre part. Sagarank souhaite contribuer à réduire ce décalage en apportant des informations pertinentes sur l'employabilité et la performance des formations pour l’économie numérique.</p>
+        </div>
+        <div class="title-container">
+          <div class="title-wrap">
+            <h4 class="title">Notre équipe</h4>
+            <span class="separator line-separator"></span>
+          </div>
+          <p class="description">Sagarank est dirigée par des serial entrepreneurs avec une passion pour les problèmes sociaux. We got lucky, let’s help others!</p>
+        </div>
+        <div class="title-container">
+          <div class="title-wrap">
+            <h4 class="title">Nos partenaires</h4>
+            <span class="separator line-separator"></span>
+          </div>
+          <span ng-repeat="partner in $ctrl.partners">
+            <a href={{partner.link}} target="_blank">
+              <img class="partners" ng-src="{{partner.image}}"/>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div><!-- Row -->
+  </div><!-- Container -->
+</section><!-- Section -->

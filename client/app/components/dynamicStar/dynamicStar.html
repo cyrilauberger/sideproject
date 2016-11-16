@@ -1,0 +1,12 @@
+<p><h5><div class="rating rating-input" ng-init="selectedStar=0;overedStar=0" ng-mouseleave="overedStar=0">
+  <span ng-mouseover="overedStar=5" ng-show="selectedStar<5 && overedStar<5"  ng-click="$parent.reviewCtrl.selectStar(5,dynamicStarCtrl.ratingType); selectedStar=5">☆</span>
+  <span ng-mouseover="overedStar=5" ng-show="selectedStar>=5 || overedStar>=5" ng-click="$parent.reviewCtrl.selectStar(5,dynamicStarCtrl.ratingType); selectedStar=5">★</span>
+  <span ng-mouseover="overedStar=4" ng-show="selectedStar<4 && overedStar<4" ng-click="$parent.reviewCtrl.selectStar(4,dynamicStarCtrl.ratingType); selectedStar=4">☆</span>
+  <span ng-mouseover="overedStar=4" ng-show="selectedStar>=4 || overedStar>=4"  ng-click="$parent.reviewCtrl.selectStar(4,dynamicStarCtrl.ratingType); selectedStar=4">★</span>
+  <span ng-mouseover="overedStar=3" ng-show="selectedStar<3 && overedStar<3" ng-click="$parent.reviewCtrl.selectStar(3,dynamicStarCtrl.ratingType); selectedStar=3">☆</span>
+  <span ng-mouseover="overedStar=3" ng-show="selectedStar>=3 || overedStar>=3" ng-click="$parent.reviewCtrl.selectStar(3,dynamicStarCtrl.ratingType); selectedStar=3">★</span>
+  <span ng-mouseover="overedStar=2" ng-show="selectedStar<2 && overedStar<2"  ng-click="$parent.reviewCtrl.selectStar(2,dynamicStarCtrl.ratingType); selectedStar=2">☆</span>
+  <span ng-mouseover="overedStar=2" ng-show="selectedStar>=2 || overedStar>=2"  ng-click="$parent.reviewCtrl.selectStar(2,dynamicStarCtrl.ratingType); selectedStar=2">★</span>
+  <span ng-mouseover="overedStar=1" ng-show="selectedStar<1 && overedStar<1"  ng-click="$parent.reviewCtrl.selectStar(1,dynamicStarCtrl.ratingType); selectedStar=1">☆</span>
+  <span ng-mouseover="overedStar=1" ng-show="selectedStar>=1 || overedStar>=1" ng-click="$parent.reviewCtrl.selectStar(1,dynamicStarCtrl.ratingType); selectedStar=1">★</span>
+</h5>

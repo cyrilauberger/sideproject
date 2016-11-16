@@ -1,0 +1,62 @@
+<div class="container">
+  <p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>
+  <ul class="list-group user-list">
+    <li class="list-group-item" ng-repeat="user in admin.users">
+	    <div class="user-info">
+	        <strong>{{user.name}}</strong><br>
+	        <span class="text-muted">{{user.email}}</span>
+	    </div>
+        <a ng-click="admin.delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+    </li>
+  </ul>
+</div>
+
+
+<!-- Page Header -->
+<div class="page-header sm bg-dark">
+  <div class="container">
+    <p>The course Import functionality is restricted to users with the 'admin' role.</p>
+    <div class="row">
+      <div class="col-xs-12">
+        <!-- Page Header Wrapper -->
+        <div class="page-header-wrapper">
+          <!-- Title & Sub Title -->
+          <h3 class="title">Import Courses</h3>
+          <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">Import Courses</li>
+          </ol><!-- Breadcrumb -->
+        </div><!-- Page Header Wrapper -->
+      </div><!-- Column -->
+    </div><!-- Row -->
+  </div><!-- Container -->
+</div><!-- Page Header -->
+
+<!-- Page Main -->
+<div role="main" class="main">
+  <div class="page-default bg-grey typo-dark">
+    <!-- Container -->
+    <div class="container">
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-8 col-md-offset-2">
+          <div class="row">
+            <textarea class="form-control" rows="20" ng-model="admin.coursesTxt"></textarea>
+          </div>
+          <div class="row text-center margin-top-30">
+            <input class="btn btn-primary" type="button" value="Import" ng-click="admin.import()">
+          </div>
+          <div ng-if="admin.success==0" class="alert alert-warning">
+            Currently running, do not refresh the page!
+          </div>
+          <div ng-if="admin.success==1" class="alert alert-success">
+            Successful import!
+          </div>
+          <div ng-if="admin.success==2" class="alert alert-danger">
+            Error! At least some courses could not be imported. Look at the Console logs for further info.
+          </div>
+        </div><!-- Column -->
+      </div><!-- Row -->
+    </div><!-- Container -->
+  </div><!-- Page Default -->
+</div><!-- Page Main -->

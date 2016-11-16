@@ -1,0 +1,85 @@
+  <div class="main-footer widgets-dark typo-light">
+    <div class="container" id="blog">
+      <!-- Footer top -->
+      <div class="footer-top" id="contact">
+        <div class="row">
+          <!-- Footer top logo -->
+          <div class="col-sm-2">
+            <a href="/" class="logo">
+              <img width="178" height="50" alt="Sagarank" class="img-responsive" src="assets/images/logo.png">
+              <p class="slogan"><small>La première plateforme d'évaluation des formations de demain</small></p>
+            </a>
+          </div><!-- Footer top logo -->
+
+          <!-- Footer top left Content -->
+          <div class="col-sm-10 footer-top-right text-right">
+            <!-- Widget -->
+            <div class="widget no-box">
+              <!-- Counter -->
+              <div class="count-widget inline">
+                <span class="count-number"><span id="coursesAmount" class="counter" count-up end-val="amounts.courses" scroll-spy-event="elementFirstScrolledIntoView" scroll-spy></span></span>
+                <span class="title">Formations</span>
+              </div><!-- Counter -->
+
+              <!-- Counter -->
+              <div class="count-widget inline">
+                <span class="count-number"><span id="institutionsAmount" class="counter" count-up end-val="amounts.institutions" scroll-spy-event="elementFirstScrolledIntoView" scroll-spy></span></span>
+                <span class="title">Etablissements</span>
+              </div><!-- Counter -->
+            </div><!-- Widget -->
+          </div><!-- Count -->
+
+        </div><!-- Footer top row -->
+      </div><!-- Footer top -->
+      <div class="row">
+        <!-- Widget Column -->
+        <div class="col-md-3">
+          <!-- Widget -->
+          <div class="widget no-box">
+            <h5 class="widget-title">Suivez-nous<span></span></h5>
+            <!-- Social Icons Color -->
+            <ul class="social-icons color">
+              <li class="facebook"><a href="http://www.facebook.com/Sagarank-584749658393887/" target="_blank" title="Facebook">Facebook</a></li>
+              <li class="twitter"><a href="http://www.twitter.com/saga_rank" target="_blank" title="Twitter">Twitter</a></li>
+              <!--
+              <li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin">Linkedin</a></li>
+              <li class="googleplus"><a href="http://www.googleplus.com/" target="_blank" title="googleplus">googleplus</a></li>
+              -->
+            </ul>
+            <br>
+            <h6 class="title"><a ui-sref="legal" class="title"> Informations légales </a></h6>
+          </div><!-- Widget -->
+        </div><!-- Column -->
+
+        <!-- Widget Column -->
+        <div class="col-md-4">
+          <!-- Widget -->
+          <div class="widget no-box">
+            <h5 class="widget-title">Mots clés utiles<span></span></h5>
+            <!-- Gallery Widget -->
+            <ul class="tag-widget">
+              <li ng-repeat="tag in tags"><a ui-sref="searchWithTags({ tags: tag })">{{i18n.get(tag)}}</a></li>
+            </ul>
+          </div><!-- Widget -->
+        </div><!-- Column -->
+
+        <!-- Widget Column -->
+        <div class="col-md-5">
+          <!-- Widget -->
+          <div class="widget subscribe no-box">
+            <h5 class="widget-title">Newsletter<span></span></h5>
+            <p class="form-message1" ng-show="addedToNewsletter">Merci de vous être inscrit à notre newsletter !</p>
+            <div class="clearfix"></div>
+            <form class="input-group subscribe-form" name="subscribe-form" id="subscribe-form">
+              <div class="form-group has-feedback">
+                <input class="form-control" type="email" ng-model="email" placeholder="S'inscrire" value="" name="subscribe_email">
+              </div>
+              <span class="input-group-btn">
+                <a class="btn" ng-click="addToNewsletter()"><span class="glyphicon glyphicon-arrow-right"></span></a>
+              </span>
+            </form>
+          </div><!-- Widget -->
+        </div><!-- Column -->
+      </div><!-- Row -->
+    </div><!-- Container -->
+  </div><!-- Main Footer -->
