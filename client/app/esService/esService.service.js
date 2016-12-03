@@ -1,12 +1,30 @@
 'use strict';
 const angular = require('angular');
 
+
 /*@ngInject*/
-/*export function esServiceService() {
-	// AngularJS will instantiate a singleton by calling "new" on this function
-  var es = esFactory({
-    host: "ec2-52-57-90-145.eu-central-1.compute.amazonaws.com/es"
+export function esServiceService() {
+  var elasticsearch = require('elasticsearch');
+
+  var es = new elasticsearch.Client({
+    host: "ec2-52-57-90-145.eu-central-1.compute.amazonaws.com/es",
+    log: 'trace'
   });
+
+  console.log(es.search({index:'sagarank', type:'course', body:{
+        "query": {
+          "matchAll": {}
+        },
+        "size":0,
+        "aggs": {
+          "tags": {
+            "terms": {
+              "field": "outputTags",
+              "size" : 8
+            }
+          }
+        }
+  }}))
 
   es.getPopularTags = function(size){
     return es.search({index:'sagarank', type:'course', body:{
@@ -151,7 +169,6 @@ const angular = require('angular');
   return es;
 }
 
-export default angular.module('sagarankApp.esService', ['esFactory'])
-  .service('esService', esServiceService)
+export default angular.module('sagarankApp.esService', [])
+  .service('esService', [esServiceService])
   .name;
-*/

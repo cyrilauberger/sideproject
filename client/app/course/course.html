@@ -159,7 +159,7 @@
                         </div>
                         <div class="col-sm-9">
                             <i> Tu as déjà suivi cette formation ? Contribue à la communauté :</i>
-                            <a ng-if="courseCtrl.isLoggedIn()" ui-sref="review({ id: courseCtrl.course.id, name: courseCtrl.course.name })" class="btn btn-lg">Evalue cette formation</a>
+                            <a ng-if="courseCtrl.isLoggedIn()" ui-sref="review({ id: courseCtrl.course.id, name: courseCtrl.course.name })" class="btn btn-lg bg-color">Evalue cette formation</a>
                             <h6 ng-if="!courseCtrl.isLoggedIn()">Connecte-toi pour pouvoir évaluer ce cours</h6>
                         </div>
                         <br><br><br>
@@ -208,7 +208,7 @@
                 <div class="col-sm-12 animated fadeInUp visible" data-animation="fadeInUp" data-animation-delay="600">
                     <div class="callto-action text-center">
                         <h5 class="title"><span class="call-title-text">Cette formation t'intéresse ? </span>
-                        <a href="{{courseCtrl.course.link}}" target="_blank" class="btn">INSCRIS-TOI</a></h5>
+                        <a href="{{courseCtrl.course.link}}" target="_blank" class="btn bg-color">INSCRIS-TOI</a></h5>
                     </div>
                 </div><!-- Column -->
             </div><!-- Row -->

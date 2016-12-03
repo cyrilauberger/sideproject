@@ -7,7 +7,21 @@ import routes from './search.routes';
 
 export class SearchComponent {
   /*@ngInject*/
-  constructor($http, $state, $location) {
+  constructor($http, $state, $location, esService) {
+
+////////
+   esService.getPopularTags(20).then(function (response) {
+      var tags = [];
+      angular.forEach(response.aggregations.tags.buckets, function(bucket){
+        tags.push(bucket.key);
+      });
+
+      if(tags.length>0){
+        $scope.searchTags = tags;
+      }
+    });
+////////
+
     var vm = this;
     vm.loading = true;
     if ($http){

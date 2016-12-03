@@ -5,13 +5,37 @@ import angular from 'angular';
 import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
 import ngSanitize from 'angular-sanitize';
-/*import es from '../../bower_components/elasticsearch/elasticsearch';*/
+/*import esFactory from 'elasticsearch';*/
+//import elasticsearch from '../../bower_components/elasticsearch/elasticsearch.angular';
+/*import es from 'elasticsearch';*/
 import 'angular-socket-io';
 
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
 // import ngMessages from 'angular-messages';
 // import ngValidationMatch from 'angular-validation-match';
+
+var elasticsearch = require('elasticsearch');
+
+var es = new elasticsearch.Client({
+  host: "ec2-52-57-90-145.eu-central-1.compute.amazonaws.com/es",
+  log: 'trace'
+});
+
+console.log(es.search({index:'sagarank', type:'course', body:{
+      "query": {
+        "matchAll": {}
+      },
+      "size":0,
+      "aggs": {
+        "tags": {
+          "terms": {
+            "field": "outputTags",
+            "size" : 8
+          }
+        }
+      }
+    }}))
 
 
 import {
@@ -25,7 +49,7 @@ import SearchComponent from './search/search.component';
 import CourseComponent from './course/course.component';
 import ReviewComponent from './review/review.component';
 import ReviewThanksComponent from './reviewThanks/reviewThanks.component';
-/*import esService from './esService/esService.service';*/
+import esService from './esService/esService.service';
 import navbar from '../components/navbar/navbar.component';
 import staticStar from './components/staticStar/staticStar.component';
 import dynamicStar from './components/dynamicStar/dynamicStar.component';
@@ -41,7 +65,7 @@ import socket from '../components/socket/socket.service';
 import './app.less';
 
 angular.module('sagarankApp', [ngCookies, ngResource, ngSanitize, 'btford.socket-io', uiRouter,
-  uiBootstrap, _Auth, account, admin, SearchComponent, CourseComponent, ReviewComponent, ReviewThanksComponent, navbar, staticStar, dynamicStar, infoList, reviewDisplay, textReview, footer, main, constants, socket, util
+  uiBootstrap, _Auth, account, admin, SearchComponent, CourseComponent, ReviewComponent, ReviewThanksComponent, esService, navbar, staticStar, dynamicStar, infoList, reviewDisplay, textReview, footer, main, constants, socket, util
 ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
