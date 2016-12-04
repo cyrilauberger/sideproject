@@ -5,38 +5,13 @@ import angular from 'angular';
 import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
 import ngSanitize from 'angular-sanitize';
-/*import esFactory from 'elasticsearch';*/
 //import elasticsearch from '../../bower_components/elasticsearch/elasticsearch.angular';
-/*import es from 'elasticsearch';*/
 import 'angular-socket-io';
 
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
 // import ngMessages from 'angular-messages';
 // import ngValidationMatch from 'angular-validation-match';
-
-var elasticsearch = require('elasticsearch');
-
-var es = new elasticsearch.Client({
-  host: "ec2-52-57-90-145.eu-central-1.compute.amazonaws.com/es",
-  log: 'trace'
-});
-
-console.log(es.search({index:'sagarank', type:'course', body:{
-      "query": {
-        "matchAll": {}
-      },
-      "size":0,
-      "aggs": {
-        "tags": {
-          "terms": {
-            "field": "outputTags",
-            "size" : 8
-          }
-        }
-      }
-    }}))
-
 
 import {
   routeConfig

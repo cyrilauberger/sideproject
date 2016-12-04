@@ -34,13 +34,15 @@
                         <!-- Widget -->
                         <div class="widget no-box">
                             <h5 class="widget-title">Recherche<span></span></h5>
-                            {{searchCtrl.svc}}
+                            <!-- {{searchCtrl.svc}} <br> -->
+                            {{searchCtrl}}
+                            {{searchCtrl.searchTags}}
                             <div class="search">
-                                <form ng-submit="searchCtrl.clickSearch()">
+                                <form ng-submit="searchCtrl.doSearch()">
                                     <div class="input-group">
                                         <input type="text" class="form-control search" ng-model="searchCtrl.svc.filters.query" name="q" id="q" placeholder="Recherche..." autocomplete="off" required>
                                         <span class="input-group-btn">
-                                            <button class="btn" type="button" ng-click="searchCtrl.clickSearch()"><i class="fa fa-search"></i></button>
+                                            <button class="btn" type="button" ng-click="searchCtrl.doSearch()"><i class="fa fa-search"></i></button>
                                         </span>
                                     </div>
                                 </form>

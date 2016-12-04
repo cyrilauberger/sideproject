@@ -8,23 +8,8 @@ export function esServiceService() {
 
   var es = new elasticsearch.Client({
     host: "ec2-52-57-90-145.eu-central-1.compute.amazonaws.com/es",
-    log: 'trace'
+    /*log: 'trace'*/
   });
-
-  console.log(es.search({index:'sagarank', type:'course', body:{
-        "query": {
-          "matchAll": {}
-        },
-        "size":0,
-        "aggs": {
-          "tags": {
-            "terms": {
-              "field": "outputTags",
-              "size" : 8
-            }
-          }
-        }
-  }}))
 
   es.getPopularTags = function(size){
     return es.search({index:'sagarank', type:'course', body:{
@@ -82,12 +67,12 @@ export function esServiceService() {
         type:'course',
         body: {
             "size":size,
-        "query": {
-            "function_score" : {
-            "query" : {"term": {"checked" : 1}},
-            "random_score" : {}
+            "query": {
+              "function_score" : {
+                "query" : {"term": {"checked" : 1}},
+                "random_score" : {}
+              }
             }
-        }
         }
     });
   };
